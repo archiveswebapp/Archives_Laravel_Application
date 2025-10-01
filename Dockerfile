@@ -52,9 +52,9 @@ RUN npm install
 RUN npm run build
 
 # -------------------------------
-# Install PHP dependencies
+# Install PHP dependencies (skip scripts during build)
 # -------------------------------
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress --no-scripts
 
 # -------------------------------
 # Fix permissions for Laravel
@@ -74,6 +74,14 @@ RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available
 EXPOSE 80
 
 # -------------------------------
-# Run Apache in foreground
+# Run Laravel setup + Apache
 # -------------------------------
-CMD ["apache2-foreground"]
+CMD php artisan migrate --force && \
+    php artisan config:clear && \
+    php artisan route:clear && \
+    php artisan view:clear && \
+    php artisan cache:clear && \
+    php artisan config:cache && \
+    php artisan route:cache && \
+    php artisan view:cache && \
+    apache2-foreground
