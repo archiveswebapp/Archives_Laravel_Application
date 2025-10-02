@@ -23,12 +23,6 @@ class AddToCart extends Component
     {
         $this->validate();
 
-        // Optional: stock check (uncomment if you have a stock column)
-        // if ($this->product->stock < $this->qty) {
-        //     $this->addError('qty', 'Not enough stock available.');
-        //     return;
-        // }
-
         $cart = session()->get('cart', []);
         $id   = $this->product->id;
 
@@ -46,10 +40,10 @@ class AddToCart extends Component
 
         session(['cart' => $cart]);
 
-        // Optional: for toast/listeners elsewhere
+        
         $this->dispatch('cart-added', id: $id, qty: $this->qty);
 
-        // Optional: flash
+        
         session()->flash('status', 'Item added to cart.');
 
         return redirect()->route('cart');
