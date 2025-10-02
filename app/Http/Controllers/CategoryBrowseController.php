@@ -13,7 +13,7 @@ class CategoryBrowseController extends Controller
         return view('categories.index', compact('categories'));
     }
 
-    public function show(Category $category) // slug-bound
+    public function show(Category $category) 
     {
         $products = $category->products()->latest()->paginate(12, ['id','name','slug','price','image','category_id']);
         return view('categories.show', compact('category','products'));
