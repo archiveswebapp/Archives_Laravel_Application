@@ -14,11 +14,6 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'name',
         'email',
@@ -27,19 +22,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'role',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
+    
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     */
+    
     protected function casts(): array
     {
         return [
@@ -48,25 +37,21 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    /**
-     * Get the orders placed by this user.
-     */
+   
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
     }
 
-    /**
-     * Accessor: Get the total amount this user has spent.
-     */
+    
+     //Accessor: Get the total amount this user has spent.
+    
     public function getTotalSpentAttribute(): float
     {
         return $this->orders->sum('total_price');
     }
 
-    /**
-     * Scope: Get users who have placed at least $minOrders orders.
-     */
+   
     public function scopeFrequentBuyers($query, $minOrders = 3)
     {
         return $query->whereHas('orders', function ($q) use ($minOrders) {
