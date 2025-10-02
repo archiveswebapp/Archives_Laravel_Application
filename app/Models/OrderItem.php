@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OrderItem extends Model
 {
-    // Your table has timestamps (created_at/updated_at), so keep the default = true.
+    
 
     protected $fillable = [
         'order_id',
         'product_id',
-        'quantity', // <-- matches your DB column
+        'quantity', 
         'price',
     ];
 
@@ -20,7 +20,7 @@ class OrderItem extends Model
         'price' => 'decimal:2',
     ];
 
-    // Make computed "total" appear in API responses
+    
     protected $appends = ['total'];
 
     public function order(): BelongsTo
@@ -33,7 +33,7 @@ class OrderItem extends Model
         return $this->belongsTo(Product::class);
     }
 
-    // Computed: price * quantity (no "total" column in DB)
+    
     public function getTotalAttribute(): float
     {
         $qty = (int) ($this->quantity ?? 0);
