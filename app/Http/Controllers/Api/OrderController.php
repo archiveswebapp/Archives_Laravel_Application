@@ -31,11 +31,11 @@ class OrderController extends Controller
             // Create order with total_price initialized (prevents 1364)
             $order = Order::create([
                 'user_id'     => $user->id,
-                'status'      => 'placed',      // or 'pending' if you prefer
-                'total_price' => 0,             // column exists and is NOT NULL
+                'status'      => 'placed',      
+                'total_price' => 0,             
             ]);
 
-            // Load all needed products once
+            
             $productIds = collect($data['items'])->pluck('product_id')->all();
             $products   = Product::whereIn('id', $productIds)->get()->keyBy('id');
 
@@ -44,12 +44,12 @@ class OrderController extends Controller
 
             foreach ($data['items'] as $row) {
                 $product = $products[$row['product_id']];
-                $qty = (int) ($row['quantity'] ?? $row['qty']); // normalize
+                $qty = (int) ($row['quantity'] ?? $row['qty']); 
 
                 $lineTotal   = $product->price * $qty;
                 $grandTotal += $lineTotal;
 
-                // IMPORTANT: save to "quantity" (your DB column)
+                
                 $lineItems[] = [
                     'product_id' => $product->id,
                     'price'      => $product->price,
@@ -57,13 +57,13 @@ class OrderController extends Controller
                 ];
             }
 
-            // Create items through the relation (order_id auto-filled)
+            
             $order->items()->createMany($lineItems);
 
-            // Update order total
+            
             $order->update(['total_price' => $grandTotal]);
 
-            // Return with items (+ their computed "total")
+            
             return $order->load(['items']);
         });
 
