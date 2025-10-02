@@ -30,7 +30,7 @@ class ProductController extends Controller
     // Show a single product (safe against SQL Injection via Eloquent)
     public function show($id)
     {
-        $product = Product::findOrFail($id); // uses prepared statements internally
+        $product = Product::findOrFail($id); 
         return response()->json($product, 200);
     }
 }
