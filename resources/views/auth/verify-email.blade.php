@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <!-- Minimal clean card -->
+    
     <div
         class="w-[26rem] sm:w-[30rem] border-4 border-[#7e6853] rounded-lg bg-white/95 shadow-lg p-8 text-center"
         style="box-shadow: 0 8px 25px rgba(0,0,0,0.2);"
