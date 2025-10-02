@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class AdminOrderController extends Controller
 {
-    /**
-     * Display a listing of orders.
-     */
+    
+     //Display a listing of orders.
+     
     public function index(Request $request)
     {
         $status = $request->string('status')->toString();
@@ -25,9 +25,9 @@ class AdminOrderController extends Controller
         return view('admin.orders.index', compact('orders', 'status'));
     }
 
-    /**
-     * Display the specified order with its items and user.
-     */
+    
+     //Display the specified order with its items and user.
+     
     public function show(Order $order)
     {
         $order->load('items.product', 'user');
@@ -35,9 +35,9 @@ class AdminOrderController extends Controller
         return view('admin.orders.show', compact('order'));
     }
 
-    /**
-     * Update the specified order status.
-     */
+    
+     //Update the specified order status.
+     
     public function update(OrderUpdateStatusRequest $request, Order $order)
     {
         $order->update($request->validated());
