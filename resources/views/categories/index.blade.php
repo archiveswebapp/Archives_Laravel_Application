@@ -1,5 +1,5 @@
 <x-app-layout>
-  {{-- Vintage parchment background (soft, same vibe as home) --}}
+  {{-- background --}}
   <div class="relative min-h-screen bg-no-repeat bg-cover bg-center"
        style="background-image:url('{{ asset('images/backgrounds/homeBG.jpg') }}');">
     <div class="absolute inset-0 opacity-35 mix-blend-multiply bg-no-repeat bg-cover bg-center"
@@ -8,7 +8,7 @@
     {{-- Page content --}}
     <div class="relative z-10 max-w-7xl mx-auto px-4 py-10">
 
-      {{-- Softer aesthetic header --}}
+      {{-- header --}}
       <div class="bg-white/90 backdrop-blur rounded-2xl p-10 text-center shadow-md mb-10">
         <p class="text-xs uppercase tracking-[0.2em] text-stone-500">Browse</p>
         <h1 class="mt-1 text-4xl font-serif font-bold text-stone-900">All Categories</h1>
@@ -22,7 +22,7 @@
         @foreach($categories as $category)
           <a href="{{ route('categories.show', $category) }}"
              class="group overflow-hidden rounded-xl border border-stone-300/70 bg-white/90 backdrop-blur shadow-sm hover:shadow-md transition">
-            {{-- Image window (equal height) --}}
+            {{-- Image window --}}
             <div class="h-44 w-full overflow-hidden">
               @if($category->image)
                 <img
@@ -48,7 +48,7 @@
         @endforeach
       </div>
 
-      {{-- (Optional) Pagination if you paginate categories --}}
+      {{-- Pagination --}}
       {{-- <div class="mt-8">{{ $categories->links() }}</div> --}}
     </div>
   </div>
