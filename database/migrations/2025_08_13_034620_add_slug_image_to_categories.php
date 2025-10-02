@@ -8,8 +8,8 @@ return new class extends Migration {
     public function up(): void {
         Schema::table('categories', function (Blueprint $table) {
             $table->string('slug', 255)->unique()->after('name');
-            $table->string('image', 255)->nullable()->after('slug');        // store relative path like "categories/oil-paintings.jpg"
-            $table->text('description')->nullable()->after('image');        // optional
+            $table->string('image', 255)->nullable()->after('slug');        
+            $table->text('description')->nullable()->after('image');        
         });
     }
 
