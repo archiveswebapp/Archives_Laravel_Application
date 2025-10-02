@@ -21,11 +21,8 @@ class LoginForm extends Form
     #[Validate('boolean')]
     public bool $remember = false;
 
-    /**
-     * Attempt to authenticate the request's credentials.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+    
+     //Attempt to authenticate the request's credentials
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
@@ -41,9 +38,9 @@ class LoginForm extends Form
         RateLimiter::clear($this->throttleKey());
     }
 
-    /**
-     * Ensure the authentication request is not rate limited.
-     */
+    
+     //Ensure the authentication request is not rate limited.
+     
     protected function ensureIsNotRateLimited(): void
     {
         if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
@@ -62,9 +59,9 @@ class LoginForm extends Form
         ]);
     }
 
-    /**
-     * Get the authentication rate limiting throttle key.
-     */
+    
+     //Get the authentication rate limiting throttle key.
+    
     protected function throttleKey(): string
     {
         return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
