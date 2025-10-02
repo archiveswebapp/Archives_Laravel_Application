@@ -40,7 +40,7 @@ class CheckoutController extends Controller
                 'user_id'     => auth()->id(),
                 'total_price' => $total,
                 'status'      => 'pending',
-                'payment'     => $request->payment, // 👈 save payment method
+                'payment'     => $request->payment, 
             ]);
 
             foreach ($cart as $row) {
@@ -51,7 +51,7 @@ class CheckoutController extends Controller
                     'price'      => $row['price'],
                 ]);
 
-                // 👇 Reduce stock
+                
                 Product::where('id', $row['id'])->decrement('stock', $row['qty']);
             }
         });
@@ -59,7 +59,7 @@ class CheckoutController extends Controller
         session()->forget('cart');
 
         return redirect()->route('checkout.success')
-            ->with('success', '🎉 Your order has been placed successfully!');
+            ->with('success', 'Your order has been placed successfully!');
     }
 
     public function success()
