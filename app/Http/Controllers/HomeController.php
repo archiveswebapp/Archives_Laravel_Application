@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Eager-load product->category for the badge on the home page
+        
         $products   = Product::with('category')->latest()->take(8)->get(['id','name','slug','price','image','category_id']);
         $categories = Category::orderBy('name')->get(['id','name','slug','image']);
 
