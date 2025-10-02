@@ -9,22 +9,18 @@ use App\Policies\OrderPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
-    /**
-     * The policy mappings for the application.
-     *
-     * @var array<class-string, class-string>
-     */
+    
+     //The policy mappings for the application
     protected $policies = [
         Order::class => OrderPolicy::class,
     ];
 
-    /**
-     * Register any authentication / authorization services.
-     */
+    
+     //Register any authentication / authorization services
     public function boot(): void
     {
         $this->registerPolicies();
 
-        //
+        
     }
 }
