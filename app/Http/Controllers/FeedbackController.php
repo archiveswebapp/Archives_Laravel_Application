@@ -15,7 +15,7 @@ class FeedbackController extends Controller
         ]);
 
         MongoFeedback::create([
-            'product_id' => (int) $productId,   // cast to integer
+            'product_id' => (int) $productId,   
             'user_id'    => auth()->id(),
             'rating'     => (int) $request->rating,
             'comment'    => $request->comment,
@@ -27,7 +27,7 @@ class FeedbackController extends Controller
 
     public function show($productId)
     {
-        $reviews = MongoFeedback::where('product_id', (int) $productId) // cast to integer
+        $reviews = MongoFeedback::where('product_id', (int) $productId) 
             ->orderBy('created_at', 'desc')
             ->get();
 
