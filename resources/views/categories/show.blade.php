@@ -1,14 +1,14 @@
 <x-app-layout>
-  {{-- Vintage parchment background --}}
+  {{-- background --}}
   <div class="relative min-h-screen bg-no-repeat bg-cover bg-center"
        style="background-image:url('{{ asset('images/backgrounds/homeBG.jpg') }}');">
 
-    {{-- Soft texture overlay to avoid banding --}}
+    {{-- avoid banding --}}
     <div class="absolute inset-0 opacity-35 mix-blend-multiply bg-no-repeat bg-cover bg-center"
          style="background-image:url('{{ asset('images/backgrounds/product.jpg') }}');">
     </div>
 
-    {{-- Page content above overlays --}}
+    {{-- Page content --}}
     <div class="relative z-10 max-w-7xl mx-auto px-4 py-10">
 
       {{-- Header / Hero --}}
