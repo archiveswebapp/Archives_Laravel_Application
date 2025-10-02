@@ -24,7 +24,7 @@ class Order extends Model
         return $this->hasMany(OrderItem::class); 
     }
 
-    // Uses 'qty' on order_items
+    
     public function getItemCountAttribute(): int
     {
         return (int) $this->items()->sum('quantity');
