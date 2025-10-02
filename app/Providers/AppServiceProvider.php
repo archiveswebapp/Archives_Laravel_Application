@@ -9,25 +9,25 @@ use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
+    
+    //Register any application services.
+     
     public function register(): void
     {
         //
     }
 
     /**
-     * Bootstrap any application services.
-     */
     
+    //Bootstrap any application services.
+     
     public function boot(): void
-{
+    {
     if(config('app.env')=== 'production'){
     URL::forceScheme('https');
     }
     
-    // Named rate limiter for read-only API calls
+        // Named rate limiter for read-only API calls
         RateLimiter::for('api-reads', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
