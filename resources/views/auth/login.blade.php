@@ -1,10 +1,10 @@
 <x-guest-layout>
-    <!-- Form card (wider, vintage border) -->
+    
     <div
         class="relative w-[28rem] sm:w-[32rem] bg-white/95 border-4 border-[#7e6853] rounded-lg p-8 shadow-lg"
         style="box-shadow: 0 8px 25px rgba(0,0,0,0.25);"
     >
-        <!-- Branding / Logo (stays your SVG, not the page background) -->
+        
         <div class="mb-6 text-center">
             <img
                 src="{{ asset('images/ArchivesLogo.svg') }}"
@@ -15,7 +15,7 @@
             <p class="text-sm text-gray-600">Please log in to continue</p>
         </div>
 
-        <!-- Session / Flash -->
+      
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         @if (session('error'))
