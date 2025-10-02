@@ -25,9 +25,9 @@ class MongoFeedback extends Eloquent
         'created_at' => 'datetime',
     ];
 
-    /**
-     * Accessor to fetch user details from MySQL.
-     */
+    
+    //Accessor to fetch user details from MySQL.
+    
     public function getUserNameAttribute()
     {
         $user = User::find($this->user_id);
